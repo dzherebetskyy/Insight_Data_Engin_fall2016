@@ -34,9 +34,10 @@ def early_pay(list1):
         pay[from1].append(to1)
     return pay
 
-def feature1(f_data,f_stream):
+def feature1(file_out1,f_data,f_stream):
     """checks if users (from f_stream) did transactions between each other before (in f_data)"""
-    out1=open('paymo_output/output1.txt','w+')
+    out1=open(file_out1, 'w+')    
+    #out1=open('paymo_output/output1.txt','w+')
     for line in f_stream:
         to1=int(line[1])
         from1=int(line[2])
@@ -57,9 +58,9 @@ def connect1(f_data,to1,from1):
     else:
         return False
 
-def feature2(f_data,f_stream):
+def feature2(file_out2,f_data,f_stream):
     """check if users are connected by a friend"""
-    out2=open('paymo_output/output2.txt','w+')
+    out2=open(file_out2,'w+')
     for line in f_stream:
         to1=int(line[1])
         from1=int(line[2])
@@ -81,9 +82,9 @@ def connect2(f_data,to2,from2):
     else:
         return False
     
-def feature3(f_data,f_stream):
+def feature3(file_out3,f_data,f_stream):
     """checks if users are connected by a 4th degree friend network"""
-    out3=open('paymo_output/output3.txt','w+')
+    out3=open(file_out3,'w+')
     for line in f_stream:
         to1=int(line[1])
         from1=int(line[2])
@@ -136,9 +137,9 @@ def main():
     feature_data=early_pay(f_batch)
     f_stream=read_file1(file_in2)
 
-    feature1(feature_data,f_stream)
-    feature2(feature_data,f_stream)
-    feature3(feature_data,f_stream)
+    feature1(file_out1,feature_data,f_stream)
+    feature2(file_out2,feature_data,f_stream)
+    feature3(file_out3,feature_data,f_stream)
   
   
 if __name__ == '__main__':
